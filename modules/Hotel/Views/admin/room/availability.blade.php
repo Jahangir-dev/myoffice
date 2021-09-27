@@ -84,13 +84,13 @@
                         <div class="col-md-6" v-show="form.active">
                             <div class="form-group">
                                 <label >{{__('Check In')}}</label>
-                                <input type="time"  v-model="form.checkIn" class="form-control">
+                                <input type="time"  v-model="form.time_start" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6" v-show="form.active">
                             <div class="form-group">
                                 <label >{{__('Check Out')}}</label>
-                                <input type="time"  v-model="form.checkOut" class="form-control">
+                                <input type="time"  v-model="form.time_end" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-6 d-none" v-show="form.active">
@@ -209,8 +209,8 @@
                     max_guests:0,
                     active:0,
                     number:1,
-                    checkIn:'',
-                    checkOut:''
+                    time_start:'',
+                    time_end:''
                 },
                 formDefault:{
                     id:'',
@@ -222,7 +222,9 @@
                     min_guests:0,
                     max_guests:0,
                     active:0,
-                    number:1
+                    number:1,
+                    time_start:'',
+                    time_end:''
                 },
                 person_types:[
 

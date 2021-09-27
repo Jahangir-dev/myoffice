@@ -28,6 +28,8 @@
             rooms:[],
             onLoadAvailability:false,
             firstLoad:true,
+            checkIn:'',
+            checkOut:'',
             i18n:[]
         },
         watch:{
@@ -283,6 +285,8 @@
 						firstLoad:me.firstLoad,
                         adults:this.adults,
                         children:this.children,
+                        checkIn:this.checkIn,
+                        checkOut:this.checkOut
                     },
                     method:'post',
                     success:function (json) {

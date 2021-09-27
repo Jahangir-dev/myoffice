@@ -29,7 +29,7 @@ class HotelController extends Controller
 
     public function index(Request $request)
     {
-
+        
         $is_ajax = $request->query('_ajax');
         $model_hotel = $this->hotelClass::select("bravo_hotels.*");
         $model_hotel->where("bravo_hotels.status", "publish");
@@ -54,6 +54,11 @@ class HotelController extends Controller
         if (!empty($star_rate = $request->query('star_rate'))) {
             $model_hotel->WhereIn('star_rate',$star_rate);
         }
+
+        if (!empty($checkIn = $request->query('checkIn')) && !empty($checkOut = $request->query('checkOut'))) {
+            $model_hotel->Where('check_in_time', '<=', $checkIn)->where('check_out_time','>=',$checkOut);
+        }
+
 
         $terms = $request->query('terms');
         if($term_id = $request->query('term_id'))

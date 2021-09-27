@@ -60,8 +60,9 @@
                             <div class="date-wrapper">
                                 <div class="check-in-wrapper row">
                                     <label>{{__("Check In - Out Time")}}</label>
-                                    <input type="time" name="checkIn" class="col-6 checkTime border-0">
-                                    <input type="time" name="checkOut" class="col-6 checkTime border-0">
+                                    <input type="time" name="checkIn" class="col-6 checkTime border-0" value="{{Request::query('checkIn')}}">
+                                    <input type="time" name="checkOut" class="col-6 checkTime border-0" value="{{Request::query('checkOut')}}">
+
                                 </div>
                             </div>
                         </div>
@@ -128,5 +129,6 @@
 <style type="text/css">
     .checkTime {
         color: #5191fa !important;
+        font-size: 15px !important;
     }
 </style>

@@ -53,7 +53,23 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-btn">
+            <div class="col-md-3 border-right">
+                <div class="form-group">
+                    <div class="form-content">
+                        <div class="form-date-search-hotel">
+                            <div class="date-wrapper">
+                                <div class="check-in-wrapper row">
+                                    <label>{{__("Check In - Out Time")}}</label>
+                                    <input type="time" name="checkIn" data-input="checkIn" class="col-6 checkTime border-0" value="{{Request::query('checkIn')}}">
+                                    <input type="time" name="checkOut" data-input="checkOut" class="col-6 checkTime border-0" value="{{Request::query('checkOut')}}">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1 col-btn">
                 <div class="g-button-submit">
                     <button class="btn btn-primary btn-search" @click="checkAvailability" :class="{'loading':onLoadAvailability}" type="submit">
                         {{__("Check Availability")}}
@@ -221,3 +237,9 @@
         {{__("No room available with your selected date. Please change your search critical")}}
     </div>
 </div>
+<style type="text/css">
+    .checkTime {
+        color: #5191fa !important;
+        font-size: 15px !important;
+    }
+</style>
