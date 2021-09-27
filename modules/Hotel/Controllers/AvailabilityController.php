@@ -111,7 +111,7 @@ class AvailabilityController extends FrontendController{
     }
 
     public function loadDates(Request $request,$hotel_id){
-
+        
         $request->validate([
             'id'=>'required',
             'start'=>'required',
@@ -263,7 +263,8 @@ class AvailabilityController extends FrontendController{
                 'start_date','end_date','price',
 //                'max_guests','min_guests',
                 'is_instant','active',
-                'number'
+                'number',
+                'time_start','time_end'
             ],$postData);
 
             $date->save();

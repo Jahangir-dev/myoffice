@@ -68,6 +68,7 @@ class HotelRoom extends Bookable
         $allDates = [];
         $tmp_price = 0;
         $tmp_night = 0;
+
         for($i = strtotime($filters['start_date']); $i < strtotime($filters['end_date']); $i+= DAY_IN_SECONDS)
         {
             $allDates[date('Y-m-d',$i)] = [
@@ -132,9 +133,9 @@ class HotelRoom extends Bookable
 		    }
 	    }
 
-
-
-        $this->tmp_number = (int) min(array_column($allDates,'number'));
+        if(count($allDates) > 0) {
+            $this->tmp_number = (int) min(array_column($allDates,'number')); 
+        }
         if(empty($this->tmp_number)) return false;
 
         //Adult - Children

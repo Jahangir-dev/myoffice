@@ -86,7 +86,7 @@
                 <div class="key">{{__("Check In")}}</div>
             </div>
             <div class="col-lg-8">
-                <div class="value">	{{$row->check_in_time}} </div>
+                <div class="value">	{{date('h:i A', strtotime($row->check_in_time))}} </div>
             </div>
         </div>
         <div class="row">
@@ -94,7 +94,7 @@
                 <div class="key">{{__("Check Out")}}</div>
             </div>
             <div class="col-lg-8">
-                <div class="value">	{{$row->check_out_time}} </div>
+                <div class="value">	{{date('h:i A', strtotime($row->check_out_time))}} </div>
             </div>
         </div>
         @if($translation->policy)
