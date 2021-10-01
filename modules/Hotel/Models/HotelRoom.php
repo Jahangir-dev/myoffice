@@ -64,7 +64,7 @@ class HotelRoom extends Bookable
 
         if(empty($filters['start_date']) or empty($filters['end_date'])) return true;
 
-        $roomDates =  $this->getDatesInRange($filters['start_date'],$filters['end_date']);
+        $roomDates =  $this->getDatesInRange($filters['start_date'],$filters['end_date'],$filters['checkIn'],$filters['checkOut']);
         $allDates = [];
         $tmp_price = 0;
         $tmp_night = 0;
@@ -107,7 +107,7 @@ class HotelRoom extends Bookable
                 }
             }
         }
-
+        
 	    if(!empty($this->ical_import_url)){
 		    $startDate = $filters['start_date'];
 		    $endDate = $filters['end_date'];
@@ -153,12 +153,17 @@ class HotelRoom extends Bookable
         return true;
     }
 
-    public function getDatesInRange($start_date,$end_date)
+    public function getDatesInRange($start_date,$end_date,$checkIn,$checkOut)
     {
         $query = $this->roomDateClass::query();
         $query->where('target_id',$this->id);
         $query->where('start_date','>=',date('Y-m-d H:i:s',strtotime($start_date)));
         $query->where('end_date','<=',date('Y-m-d H:i:s',strtotime($end_date)));
+        if(!empty($checkIn) && !empty($checkOut))
+        {
+           $query->where('time_start','<=',$checkIn);
+           $query->where('time_end','>=',$checkOut); 
+        }
 
         return $query->take(40)->get();
     }

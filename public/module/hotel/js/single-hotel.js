@@ -285,8 +285,8 @@
 						firstLoad:me.firstLoad,
                         adults:this.adults,
                         children:this.children,
-                        checkIn:this.checkIn,
-                        checkOut:this.checkOut
+                        checkIn:$("#checkIn").val(),
+                        checkOut:$("#checkOut").val()
                     },
                     method:'post',
                     success:function (json) {
@@ -335,6 +335,8 @@
                         // step:this.step,
                         adults:this.adults,
                         children:this.children,
+                        checkIn:$("#checkIn").val(),
+                        checkOut:$("#checkOut").val(),
                         rooms:_.map(this.rooms,function (item) {
                             return _.pick(item,['id','number_selected'])
                         })

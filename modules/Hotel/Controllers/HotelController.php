@@ -29,7 +29,6 @@ class HotelController extends Controller
 
     public function index(Request $request)
     {
-        
         $is_ajax = $request->query('_ajax');
         $model_hotel = $this->hotelClass::select("bravo_hotels.*");
         $model_hotel->where("bravo_hotels.status", "publish");
@@ -43,6 +42,14 @@ class HotelController extends Controller
                 });
             }
         }
+        
+        if (!empty($start_date = $request->query('start')) || !empty($end_date = $request->query('end'))) {
+            $end_date = $request->query('end');
+            $model_hotel->join('bravo_hotel_rooms as dt', 'dt.parent_id', "bravo_hotels.id")->join('bravo_hotel_room_dates as dates','dates.target_id','dt.id')
+            ->where('start_date','>=',date('Y-m-d H:i:s',strtotime($start_date)))
+            ->where('end_date','<=',date('Y-m-d H:i:s',strtotime($end_date)));
+        }
+
         if (!empty($price_range = $request->query('price_range'))) {
             $pri_from = explode(";", $price_range)[0];
             $pri_to = explode(";", $price_range)[1];
@@ -158,7 +165,7 @@ class HotelController extends Controller
 
     public function checkAvailability(){
         $hotel_id = \request('hotel_id');
-
+    
         if(!\request()->input('firstLoad')) {
             request()->validate([
                 'hotel_id'   => 'required',
